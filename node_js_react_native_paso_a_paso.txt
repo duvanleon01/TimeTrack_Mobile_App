@@ -1,0 +1,1090 @@
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||-------------------------------------------------------------- NODE.JS Y REACT NATIVE --------------------------------------------------------------|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||                                                                                                                                                    |||
+||| -- 01.  EDITOR DE CÓDIGO Y EXTENSIONES                                                                                                             |||
+||| -- 02.  BASE DE DATOS. MySQL                                                                                                                       |||
+||| -- 03.  ESTRUCTURA DE CARPETAS Y ARCHIVOS DEL PROYECTO                                                                                             |||
+||| -- 04.  BACKEND. Node.js, API y Server                                                                                                             |||
+||| -- 05.  FRONTEND MÓVIL. React Native                                                                                                               |||
+||| -- 06.  DESPLEGAR EL PROYECTO                                                                                                                      |||
+|||                                                                                                                                                    |||
+||| -- AUTOR:           ADAPTACIÓN hecha por ALBEIRO RAMOS. UNIMINUTO, 2025; del ORIGINAL elaborado por el Instructor MARCO LEÓN MORA. SENA, 2023.     |||
+|||                                                                                                                                                    |||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||-------------------------------------------------------- 01.EDITOR DE CÓDIGO Y EXTENSIONES ---------------------------------------------------------|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.01.  Instalar Visual Studio Code: ----------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar 'Visual Studio Code': https://code.visualstudio.com/download.
+
+            02. Instalar Visual Studio Code.
+
+                    ⦿   En el asistente de instalación dejar marcado:   ☑ 'Agregar PATH…'.
+
+            03. Abrir Visual Studio Code.
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 01.02.  Instalar extensiones en Visual Studio Code: -------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Instalar las siguientes extensiones en Visual Studio Code:
+
+                    ⦿   Material Icon Theme
+                    ⦿   ES7 React/Redux/React-Native snippets
+                    ⦿   Simple React Snippets
+                    ⦿   Auto Close Tag
+                    ⦿   Paste JSON as Code
+                    ⦿   TypeScript importer
+
+            02. Abrir una 'Terminal' en Visual Studio Code:
+
+                    ⦿   'Terminal / New Terminal' ó 'Ctrl + Shift + ñ'
+                    ⦿   Verificar que sea 'pwsh' (powershell) o sino hay que cambiarla
+            
+            03. Cambiar el nombre de la terminal a 'commands', seleccionándola en la parte inferior derecha y presionando F2 / Rename...
+            
+            04. Cambiar el color de la terminal 'commands', dando click derecho / Chage Color... / Seleccionar el color
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------- 02.  BASE DE DATOS. MySQL ------------------------------------------------------------|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 02.01.  Instalar XAMPP: -----------------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar 'XAMPP': https://www.apachefriends.org/es/download.html.
+
+            02. Instalar XAMPP.
+
+            03. Abrir el 'XAMPP Control Panel' y ejecutar los servicios de 'Apache' y 'MySQL'.
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 02.02.  Crear la base de datos 'MySql': -------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abrir el navegador y escribir http://localhost/phpmyadmin/.
+            
+            02. Dar click en 'SQL' y escribir el siguiente código:
+                    
+                    01   CREATE SCHEMA db_node_react DEFAULT CHARACTER SET utf8 ;
+                    02   USE db_node_react;
+                    03 
+                    04   CREATE TABLE users (
+                    05     id BIGINT NOT NULL AUTO_INCREMENT,
+                    06     email VARCHAR(180) NOT NULL UNIQUE,
+                    07     name VARCHAR(90) NOT NULL,
+                    08     lastname VARCHAR(90) NOT NULL,
+                    09     phone VARCHAR(90) NOT NULL UNIQUE,
+                    10     image VARCHAR(255) NULL,
+                    11     password VARCHAR(90) NOT NULL,
+                    12     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    13     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    14     PRIMARY KEY (id)
+                    15   ) ENGINE=InnoDB;
+
+            02. Dar click en 'Continuar'.
+            
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------ 03.  ESTRUCTURA DE CARPETAS Y ARCHIVOS DEL PROYECTO -----------------------------------------------|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.01.  Crear la estructura de carpetas y los archivos del proyecto: --------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                                                                                                                                        # C = Carpetas
+                                                                                                                                        # A = Archivos
+
+                proyecto_nombre/                                            # C. Backend y Frontend de un proyecto móvil.
+                ├── backend/                                                # C. Lógica del servidor Node.js para la gestión de datos y API.
+                │   ├── config/                                             # C. Configuración del backend (base de datos, claves).
+                │   │   ├── config.js                                       # A. Configuración principal del backend (variables de entorno, etc.).
+                │   │   ├── keys.js                                         # A. Claves secretas para seguridad (JWT, servicios externos).
+                │   │   └── passport.js                                     # A. Configuración para la autenticación de usuarios (login, registro).
+                │   ├── controllers/                                        # C. Funciones para manejar las peticiones HTTP y la lógica.
+                │   │   └── userController.js                               # A. Controlador para las operaciones relacionadas con los usuarios.
+                │   ├── models/                                             # C. Estructura de datos que se utilizarán en la base de datos.
+                │   │   └── user.js                                         # A. Esquema del modelo de usuario (campos en la base de datos).
+    (NO CREAR)  │   ├── node_modules/                                       # C. Dependencias (librerías) instaladas para el backend.
+                │   ├── routes/                                             # C. Endpoints (rutas) de la API del backend.
+                │   │   └── userRoutes.js                                   # A. Define las rutas para las operaciones relacionadas con usuarios.
+    (NO CREAR)  │   ├── package-lock.json                                   # A. Versiones exactas de las dependencias del backend.
+    (NO CREAR)  │   ├── package.json                                        # A. Manifiesto del backend (nombre, dependencias, scripts, etcs).
+                │   └── server.js                                           # A. Servidor node.js.
+                └── frontend/                                               # C. Aplicación móvil de React Native.
+                    ├── assets/                                             # C. Recursos estáticos (imágenes, fuentes).
+    (NO CREAR)      ├── node_modules/                                       # C. Dependencias (librerías) instaladas para el frontend.
+                    ├── src/                                                # C. Carpetas y archivos de la aplicación React Native.
+                    │   ├── Data/                                           # C. Capa para obtención y manipulación de datos.
+                    │   │   ├── repositories/                               # C. Interfaces para acceder a diferentes fuentes de datos.
+                    │   │   │   ├── AuthRepository.tsx                      # A. Lógica para la autenticación.
+                    │   │   │   └── UserLocalRepository.tsx                 # A. Gestión de datos del usuario a nivel local (AsyncStorage).
+                    │   │   └── sources/                                    # C. Implementaciones concretas de las fuentes de datos (local, remota).
+                    │   │       ├── local/                                  # C. Lógica para acceder a datos almacenados localmente.
+                    │   │       │   └── LocalStorage.tsx                    # A. Interactua con el almacenamiento local (AsyncStorage).
+                    │   │       └── remote/                                 # C. Interactua con la API del backend (clientes API).
+                    │   │           ├── api/                                # C. Clientes o servicios para realizar llamadas a la API.
+                    │   │           │   └── ApiDelivery.tsx                 # A. Cliente para interactuar con la API relacionada con "delivery".
+                    │   │           └── models/                             # C. Estructuras de datos que se reciben de la API.
+                    │   │               └── ResponseApiDelivery.tsx         # A. Tipo de la respuesta de la API de "delivery".
+                    │   ├── Domain/                                         # C. Lógica de negocio y entidades del dominio (independiente).
+                    │   │   ├── entities/                                   # C. Estructuras de los objetos del negocio (User).
+                    │   │   │   └── User.tsx                                # A. Entidad de usuario con sus propiedades (nombre, email).
+                    │   │   ├── repositories/                               # C. Interfaces para acceder a los datos (implementado en Data).
+                    │   │   │   ├── AuthRepository.tsx                      # A. Interfaz para las operaciones de autenticación.
+                    │   │   │   └── UserLocalRepository.tsx                 # A. Interfaz para la gestión de datos locales del usuario.
+                    │   │   └── useCases/                                   # C. Lógica de negocio específica de la aplicación (dominio/data).
+                    │   │       ├── auth/                                   # C. Casos de uso relacionados con la autenticación (Login, Register).
+                    │   │       │   ├── LoginAuth.tsx                       # A. Lógica para el proceso de inicio de sesión del usuario.
+                    │   │       │   └── RegisterAuth.tsx                    # A. Lógica para el proceso de registro de nuevos usuarios.
+                    │   │       └── userLocal/                              # C. Casos de uso relacionados con la gestión local del usuario.
+                    │   │           ├── GetUserLocal.tsx                    # A. Obtener información del usuario almacenado localmente.
+                    │   │           ├── RemoveUserLocal.tsx                 # A. Eliminar información del usuario almacenado localmente.
+                    │   │           └── SaveUserLocal.tsx                   # A. Guardar la información del usuario localmente.
+                    │   └── Presentation/                                   # C. Capa de la interfaz y presentación de datos (components, views).
+                    │       ├── components/                                 # C. Componentes de interfaz de usuario (inputs, buttons).
+                    │       │   ├── CustomTextInput.tsx                     # A. Componente de entrada de texto personalizado con estilos.
+                    │       │   └── RoundedButton.tsx                       # A. Componente de botón con estilos de bordes redondeados.
+                    │       ├── hooks/                                      # C. Hooks personalizados para lógica de presentación reutilizable.
+                    │       │   └── useUserLocal.tsx                        # A. Hook personalizado para manipular la información local del usuario.
+                    │       ├── theme/                                      # C. Estilos y la temática visual general de la aplicación.
+                    │       │   └── AppTheme.tsx                            # A. Paleta de colores, tipografía y estilos consistentes.
+                    │       └── views/                                      # C. Pantallas o vistas principales de la aplicación.
+                    │           ├── home/                                   # C. Archivos relacionados con la pantalla principal de la aplicación.
+                    │           │   ├── Home.tsx                            # A. Componente principal de la pantalla inicio (Home).
+                    │           │   ├── Styles.tsx                          # A. Estilos específicos para los componentes de la pantalla inicio.
+                    │           │   └── ViewModel.tsx                       # A. Lógica de presentación para la pantalla inicio.
+                    │           ├── profile/                                # C. Archivos relacionados con la pantalla de perfil del usuario.
+                    │           │   └── info/                               # C. Archivos relacionados con la información del perfil del usuario.
+                    │           │       ├── ProfileInfo.tsx                 # A. Componente para mostrar la información del perfil del usuario.
+                    │           │       └── ViewModel.tsx                   # A. Lógica de presentación para la información del perfil del usuario.
+                    │           └── register/                               # C. Archivos relacionados con la pantalla de registro de usuarios.
+                    │               ├── Register.tsx                        # A. Componente principal de la pantalla de registro de usuarios.
+                    │               ├── Styles.tsx                          # A. Estilos específicos para los componentes de la pantalla de registro.
+                    │               └── ViewModel.tsx                       # A. Lógica de presentación para la pantalla de registro de usuarios.
+    (NO CREAR)      ├── .gitignore                                          # A. Archivos y carpetas que Git debe ignorar (node_modules, etc.).
+                    ├── app.json                                            # A. Configuración utilizada por Expo para configurar la app.
+                    ├── App.tsx                                             # A. Raíz de la aplicación React Native (punto de entrada UI).
+                    ├── index.ts                                            # A. Punto de entrada para la aplicación React Native (fuera de Expo).
+    (NO CREAR)      ├── package-lock.json                                   # A. Registra las versiones exactas de las dependencias del frontend.
+    (NO CREAR)      ├── package.json                                        # A. Manifiesto del proyecto frontend (nombre, dependencias, scripts).
+                    └── tsconfig.json                                       # A. Configuración para el compilador de TypeScript.
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||-------------------------------------------------------- 04.  BACKEND. Node.js, API y Server -------------------------------------------------------|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.01.  Crear la siguiente estructura de carpetas: --------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                                                                                                                                        # C = Carpetas
+                                                                                                                                        # A = Archivos
+
+                proyecto_nombre/                                            # C. Backend y Frontend de un proyecto móvil.
+                ├── backend/                                                # C. Lógica del servidor Node.js para la gestión de datos y API.
+                │   ├── config/                                             # C. Configuración del backend (base de datos, claves).
+                │   │   ├── config.js                                       # A. Configuración principal del backend (variables de entorno, etc.).
+                │   │   ├── keys.js                                         # A. Claves secretas para seguridad (JWT, servicios externos).
+                │   │   └── passport.js                                     # A. Configuración para la autenticación de usuarios (login, registro).
+                │   ├── controllers/                                        # C. Funciones para manejar las peticiones HTTP y la lógica.
+                │   │   └── userController.js                               # A. Controlador para las operaciones relacionadas con los usuarios.
+                │   ├── models/                                             # C. Estructura de datos que se utilizarán en la base de datos.
+                │   │   └── user.js                                         # A. Esquema del modelo de usuario (campos en la base de datos).
+    (NO CREAR)  │   ├── node_modules/                                       # C. Dependencias (librerías) instaladas para el backend.
+                │   ├── routes/                                             # C. Endpoints (rutas) de la API del backend.
+                │   │   └── userRoutes.js                                   # A. Define las rutas para las operaciones relacionadas con usuarios.
+    (NO CREAR)  │   ├── package-lock.json                                   # A. Versiones exactas de las dependencias del backend.
+    (NO CREAR)  │   ├── package.json                                        # A. Manifiesto del backend (nombre, dependencias, scripts, etcs).
+                │   └── server.js                                           # A. Servidor node.js.
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.02.  Instalar node.js: ---------------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar 'node.js': https://nodejs.org/es/.
+
+                    ⦿   Descargar la última version LTS
+
+            02. Instalar node.js.
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.03.  PowerShell. Directivas: ---------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abir PowerShell y digitar el siguiente comando para ver las directivas de ejecución:
+
+                    PS C:\..\..> Get-ExecutionPolicy
+                    Restricted
+
+            NOTA:   ⦿   Si aparece 'Restricted', hay que cambiarla a 'Unrestricted' de la siguiente forma:
+
+                    PS C:\..\..> Set-ExecutionPolicy -Scope CurrentUser
+
+                    cmdlet Set-ExecutionPolicy en la posición 1 de la canalización de comandos
+                    Proporcione valores para los parámetros siguientes:
+                    ExecutionPolicy: Unrestricted
+
+            02. Verificar la versión de 'node' y 'npm':
+
+                    PS C:\..\..> node --version
+                    PS C:\..\..> npm --version
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.04.  Instalar dependencias en el 'backend/': -----------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abrir una Terminal en 'Visual Studio Code' y digitar los siguientes comandos:
+
+            02. Cambiar el nombre de la terminal a 'backend', seleccionándola en la parte inferior derecha y presionando F2 / Rename...
+            
+            03. Cambiar el color de la terminal 'backend', dando click derecho / Chage Color... / Seleccionar el color
+            
+            04. En la Terminal de 'Visual Studio Code' digitar lo siguiente:
+
+                    PS C:\..\..> cd backend
+                    PS C:\..\backend> npm init
+
+                    This utility will walk you through creating a package.json file.
+                    It only covers the most common items, and tries to guess sensible defaults.
+
+                    See `npm help init` for definitive documentation on these fields
+                    and exactly what they do.
+
+                    Use `npm install <pkg>` afterwards to install a package and
+                    save it as a dependency in the package.json file.
+
+                    Press ^C at any time to quit.
+                    package name: (backend) nodejs
+                    version: (1.0.0)
+                    description: Backend de la app móvil de react native
+                    entry point: (server.js) server.js
+                    test command:
+                    git repository:
+                    keywords: ReactNative NodeJs
+                    author: Albeiro Ramos
+                    license: (ISC) MIT
+                    About to write to C:\Users\Instructor\Documents\_albe_\react_native\backend\package.json:
+
+                    {
+                      "name": "nodejs",
+                      "version": "1.0.0",
+                      "description": "Backend de la app de prueba 'my-app' de React Native",
+                      "main": "server.js",
+                      "scripts": {
+                        "test": "echo \"Error: no test specified\" && exit 1"
+                      },
+                      "keywords": [
+                        "ReactNative",
+                        "NodeJs"
+                      ],
+                      "author": "Instructor Albeiro Ramos",
+                      "license": "MIT"
+                    }
+
+                    Is this OK? (yes) yes
+
+                    PS C:\..\backend> npm i express@4.21.2
+                    PS C:\..\backend> npm i http@0.0.1-security
+                    PS C:\..\backend> npm i cors@2.8.5
+                    PS C:\..\backend> npm i morgan@1.10.0
+                    PS C:\..\backend> npm i mysql@2.18.1
+                    PS C:\..\backend> npm i bcryptjs@3.0.2
+                    PS C:\..\backend> npm i passport@0.4.1
+                    PS C:\..\backend> npm i passport-jwt@4.0.1
+                    PS C:\..\backend> npm i jsonwebtoken@9.0.2
+            
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.05.  Modificar el archivo 'backend/config/config.js': --------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   const mysql = require('mysql');
+                    02   const db = mysql.createConnection({
+                    03     host: 'localhost',
+                    04     user: 'root',
+                    05     password: '',
+                    06     database: 'db_node_react',
+                    07     port: 3306
+                    08   });
+                    09   db.connect(function(err) {
+                    10     if (err) throw err;
+                    11     console.log('Base de datos conectada')
+                    12   });
+                    13   module.exports = db;
+
+                ┌ ------------------------------------------------------------------------------------------------------------------------------------ ┐
+                |                                                                                                                                      |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |--------------------------------------------------------------------------------------------------------------------------------------|
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                      |
+                └ ------------------------------------------------------------------------------------------------------------------------------------ ┘
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.06.  Modificar el archivo 'backend/models/user.js': ----------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                    01   const db = require('../config/config');
+                    02   const bcrypt = require('bcryptjs');
+                    03   const User = {};
+                    04   User.findById = (id, result) => {
+                    05     const sql = `SELECT id, email, name, lastname, image, password FROM users WHERE id = ?`;
+                    06     db.query(sql,
+                    07       [id], (err, user) => {
+                    08         if (err) {
+                    09           console.log('Error al consultar: ', err);
+                    10           result(err, null);
+                    11         }
+                    12         else {
+                    13           console.log('Usuario consultado: ',  user[0] );
+                    14           result(null, user[0]);
+                    15         }
+                    16       }
+                    17     );
+                    18   }
+                    19   User.findByEmail = (email, result) => {
+                    20     const sql = `SELECT id, email, name, lastname, image, phone, password FROM users WHERE email = ?`;
+                    21     db.query(
+                    22       sql,
+                    23       [email], 
+                    24       (err, user) => {
+                    25         if (err) {
+                    26           console.log('Error al consultar: ', err);
+                    27           result(err, null);
+                    28         }
+                    29         else {
+                    30           console.log('Usuario consultado: ',  user[0] );
+                    31           result(null, user[0]);
+                    32         }
+                    33       }
+                    34     );
+                    35   }
+                    36   User.create = async (user, result) => {
+                    37     const hash = await bcrypt.hash(user.password, 10)
+                    38     const sql = `INSERT INTO USERS(
+                    39                   email, 
+                    40                   name, 
+                    41                   lastname,
+                    42                   phone,
+                    43                   image,
+                    44                   password,
+                    45                   created_at,
+                    46                   updated_at
+                    47                 ) VALUES (?,?,?,?,?,?,?,?)`;
+                    48     db.query(sql,
+                    49       [
+                    50         user.email,
+                    51         user.name,
+                    52         user.lastname,
+                    53         user.phone,
+                    54         user.image,
+                    55         hash,
+                    56         new Date(),
+                    57         new Date()
+                    58       ], (err, res) => {
+                    59         if (err) {
+                    60           console.log('Error al crear al Usuario: ', err);
+                    61           result(err, null);
+                    62         } else {
+                    63           console.log('Usuario creado: ', {id: res.insertId, ...user});
+                    64           result(null, {id: res.insertId, ...user});
+                    65         }
+                    66       }
+                    67     );
+                    68   }
+                    69   module.exports = User;
+
+                ┌ ------------------------------------------------------------------------------------------------------------------------------------ ┐
+                |                                                                                                                                      |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |--------------------------------------------------------------------------------------------------------------------------------------|
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                      |
+                └ ------------------------------------------------------------------------------------------------------------------------------------ ┘
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.07.  Modificar el archivo 'backend/config/keys.js': ----------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Ingrese a la siguiente página: https://www.vondy.com/random-key-generator--ZzGGMYgS?lc=5 (o en alguna página que genere códigos de 256
+                bit de forma aleatoria) para generar una clave de 256 bits; cópiela y péguela en el archivo 'backend/config/keys.js', quedando de la 
+                siguiente forma:
+
+                    01   module.exports = {
+                    02     secretOrKey: 'e9f94f8d3a1e6d7c2b3f9e5a7c8d4f2b7a0e1d3c4f5b6a7e9f8d0c3b4a6d2e1'
+                    03   }
+
+                ┌ ------------------------------------------------------------------------------------------------------------------------------------ ┐
+                |                                                                                                                                      |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |--------------------------------------------------------------------------------------------------------------------------------------|
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                      |
+                └ ------------------------------------------------------------------------------------------------------------------------------------ ┘
+                    
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.08.  Modificar el archivo 'backend/config/passport.js': ------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   const JwtStrategy = require('passport-jwt').Strategy;
+                    02   const ExtractJwt = require('passport-jwt').ExtractJwt;
+                    03   const Keys = require('./keys');
+                    04   const User = require('../models/user');
+                    05   module.exports = (passport) => {
+                    06     let opts = {};
+                    07     opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
+                    08     opts.secretOrKey = Keys.secretOrKey;
+                    09     passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
+                    10       User.findById(jwt_payload.id, (err, user) => {
+                    11         if (err) {
+                    12           return done(err, false);
+                    13         }
+                    14         if (user) {
+                    15           return done(null, user);
+                    16         }
+                    17         else{
+                    18           return done(null, false);
+                    19         }
+                    20       });
+                    21     }));
+                    22   }
+
+                ┌ ------------------------------------------------------------------------------------------------------------------------------------ ┐
+                |                                                                                                                                      |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |--------------------------------------------------------------------------------------------------------------------------------------|
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                      |
+                └ ------------------------------------------------------------------------------------------------------------------------------------ ┘
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.09.  Modificar el archivo 'backend/controllers/userController.js': -------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+                                        
+                    01   const User = require('../models/user');
+                    02   const bcrypt = require('bcryptjs');
+                    03   const jwt = require('jsonwebtoken');
+                    04   const keys = require('../config/keys');
+                    05   module.exports = {
+                    06     login(req, res) {
+                    07       const email = req.body.email;
+                    08       const password = req.body.password;
+                    09       User.findByEmail(email, async (err, myUser) => {
+                    10         if (err) {
+                    11           return res.status(501).json({
+                    12             success: false,
+                    13             message: 'Error al consultar el usuario',
+                    14             error: err
+                    15           });
+                    16         }
+                    17         if (!myUser) {
+                    18           return res.status(401).json({
+                    19             success: false,
+                    20             message: 'El email no existe en la base de datos'
+                    21           });
+                    22         }
+                    23         const isPasswordValid = await bcrypt.compare(password, myUser.password);
+                    24         if (isPasswordValid) {
+                    25           const token = jwt.sign({ id: myUser.id, email: myUser.email }, keys.secretOrKey, {});
+                    26           const data = {
+                    27             id: myUser.id,
+                    28             email: myUser.email,
+                    29             name: myUser.name,
+                    30             lastname: myUser.lastname,
+                    31             image: myUser.image,
+                    32             phone: myUser.phone,
+                    33             session_token: `JWT ${token}`
+                    34           }
+                    35           return res.status(201).json({
+                    36             success: true,
+                    37             message: 'Usuario autenticado ',
+                    38             data: data
+                    39           });
+                    40         }
+                    41         else {
+                    42           return res.status(401).json({
+                    43             success: false,
+                    44             message: 'Contraseña o correo incorrecto'
+                    45           });
+                    46         }
+                    47       });
+                    48     },
+                    49     register(req, res) {
+                    50       const user = req.body;
+                    51       User.create(user, (err, data) => {
+                    52         if (err) {
+                    53           return res.status(501).json ({
+                    54             success: false,
+                    55             message: 'Error al crear al usuario',
+                    56             error: err
+                    57           });
+                    58         } else {
+                    59           return res.status(201).json({
+                    60             success: true,
+                    61             message: 'Creado el Usuario',
+                    62             data: data
+                    63           });
+                    64         }
+                    65       });
+                    66     }
+                    67   }
+
+                ┌ ------------------------------------------------------------------------------------------------------------------------------------ ┐
+                |                                                                                                                                      |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |--------------------------------------------------------------------------------------------------------------------------------------|
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                      |
+                └ ------------------------------------------------------------------------------------------------------------------------------------ ┘
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.10.  Modificar el archivo 'backend/routes/userRoutes.js': ----------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+                    
+                    01   const userController = require('../controllers/userController');
+                    02   module.exports = (app) => {
+                    03     app.post('/api/users/create', userController.register);
+                    04     app.post('/api/users/login', userController.login);
+                    05   }
+
+                ┌ ------------------------------------------------------------------------------------------------------------------------------------ ┐
+                |                                                                                                                                      |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |--------------------------------------------------------------------------------------------------------------------------------------|
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                      |
+                └ ------------------------------------------------------------------------------------------------------------------------------------ ┘
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.11.  Modificar el archivo 'backend/server.js': ---------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Verificar la dirección IPv4 del dispositivo. Abra una nueva terminal en 'Visual Studio Code' y ejecutar los siguientes comandos:
+            
+                    PS C:\..\..> ipconfig
+
+                    Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.77
+
+
+            02. En la línea 29 del archivo 'backend/server.js', escribir la dirección IPv4 encontrada, quedando de la siguiente forma:                    
+                    
+                    01   const express = require('express');
+                    02   const passport = require('passport');
+                    03   const app = express();
+                    04   const http = require('http');
+                    05   const server = http.createServer(app);
+                    06   const logger = require('morgan');
+                    07   const cors = require('cors');
+                    08   const usersRoutes = require('./routes/userRoutes');
+                    09   const port = process.env.PORT || 3000;
+                    10   app.use(logger('dev'));
+                    11   app.use(express.json());
+                    12   app.use(express.urlencoded({ extended: true }));
+                    13   app.use(cors());
+                    14   app.use(passport.initialize());
+                    15   app.use(passport.session());
+                    16   require('./config/passport')(passport);
+                    17   app.disable('x-powered-by');
+                    18   app.set('port', port);
+                    19   usersRoutes(app);
+                    20   server.listen(3000, '192.168.1.77' || 'localhost', function(){
+                    21     console.log('App node.js ' + process.pid + ' ejecutando en ' + server.address().address + ':' + server.address().port);
+                    22   });
+                    23   app.get('/', (req, res) => {
+                    24     res.send('Ruta raíz del Backend');
+                    25   });
+                    26   app.get('/test', (req, res) => {
+                    27     res.send('Ruta TEST');
+                    28   });
+                    29   app.use((err, req, res, next) => {
+                    30     console.log(err);
+                    31     res.status(err.status || 500).send(err.stack);
+                    32   });
+
+                ┌ ------------------------------------------------------------------------------------------------------------------------------------ ┐
+                |                                                                                                                                      |
+                  EXPLICACIÓN:   
+                    
+                    ⦿   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+
+                |--------------------------------------------------------------------------------------------------------------------------------------|
+                
+                    A.   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.
+                |                                                                                                                                      |
+                └ ------------------------------------------------------------------------------------------------------------------------------------ ┘
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.13.  Ejecutar el Servidor 'server.js': -----------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Iniciar el servidor 'backend' desde la terminal de Visual Studio Code.
+
+                    PS C:\..\backend> node server.js
+            
+            02. Debe aparecer en la terminal, texto similar a lo siguiente:
+            
+                    App node.js 14124 ejecutando en 192.168.1.77:3000
+                    Base de datos conectada
+
+            NOTA:   ⦿   Para detener el servidor, ubíquese en la terminal de Visual Studio Code y presione 'CTRL + C'.
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 04.14.  Probar la API en el Servidor con Postman: ---------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Descargar 'Postman': https://www.postman.com/downloads/. 
+
+            02. Instalar 'Postman'.            
+
+            03. Abrir 'Postman'
+            
+            04. Crear un Usuario. Realizar una petición 'POST' para crear un registro de usuario de la siguiente forma:
+
+                    ⦿   Cambiar al método 'POST'
+
+                    ⦿   Escribir el siguiente 'EndPoint': http://192.168.1.77:3000/api/users/create
+
+            NOTA:   ⦿   Recuerde modificar la dirección IP para su aplicación
+
+                    ⦿   Seleccionar: 'Body / raw / JSON' y escribir el siguiente código en formato JSON:
+
+                          01   {
+                          02     "email": "micorreo@gmail.com",
+                          03     "name": "Pedro Nel",
+                          04     "lastname": "Dominguez",
+                          05     "phone": "741852",
+                          06     "image": "yyyy",
+                          07     "password": "9876546"
+                          08   }
+
+                    ⦿   Clic a 'Send'
+
+                    ⦿   La respuesta debe ser la siguiente:
+
+                          01  {
+                          02      "success": true,
+                          03      "message": "Creado el Usuario",
+                          04      "data": {
+                          05          "id": 1,
+                          06          "email": "micorreo@gmail.com",
+                          07          "name": "Pedro Nel",
+                          08          "lastname": "Dominguez",
+                          09          "phone": "741852",
+                          10          "image": "yyyy",
+                          11          "password": "9876546"
+                          12      }
+                          13  }
+
+                    ⦿   Verificar en la DB que se haya creado el usuario.
+
+            05. Iniciar Sesión. Realizar una petición 'POST' para 'iniciar sesión' de la siguiente forma:
+
+                    ⦿   Cambiar al método 'POST'
+
+                    ⦿   Escribir el siguiente 'EndPoint': http://192.168.1.77:3000/api/users/login
+
+            NOTA:   ⦿   Recuerde modificar la dirección IP para su aplicación.
+
+                    ⦿   Seleccionar: 'Body / raw / JSON' y escribir el siguiente código en formato JSON:
+
+                          01   {
+                          02     "email": "micorreo@gmail.com",
+                          03     "password": "9876546"
+                          04   }
+
+                    ⦿   Clic a 'Send'
+
+                    ⦿   La respuesta debe ser la siguiente (Observe que contiene el token):
+
+                          01   {
+                          02     "success": true,
+                          03     "message": "Usuario autenticado ",
+                          04     "data": {
+                          05       "id": 1,
+                          06       "email": "micorreo@gmail.com",
+                          07       "name": "Pedro Nel",
+                          08       "lastname": "Dominguez",
+                          09       "image": "yyyy",
+                          10       "phone": "741852",
+                          11       "session_token": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+                                       eyJpZCI6MSwiZW1haWwiOiJtaWNvcnJlb0BnbWFpbC5jb20iLCJpYXQiOjE3NDg3MDczMTl9.
+                                       _esSZIs1Rs9ri0YCAFdPcwCpSddg39DFDCY_-YNTZFQ"
+                          12     }
+                          13   }
+
+                    ⦿   En caso que el 'email' o el 'password' no sean correctos, la respuesta debe ser la siguiente:
+
+                          01   {
+                          02       "success": false,
+                          03       "message": "El email no existe en la base de datos",
+                          04   }
+
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||--------------------------------------------------------- 05. FRONTEND MÓVIL. React Native ---------------------------------------------------------|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.01.  Instalar Android Studio: --------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+            
+            01. Descargar 'Android Studio': https://developer.android.com/studio?hl=es-419.
+
+                    ⦿   Descargar la versión más reciente.
+
+            02. Instalar Android Studio.
+
+                    ⦿   Dejar habilitado:   ☑ 'Android Virtual Device'.
+                    ⦿   Dar clic a 'Don't send' / 'Next' / 'Next' / '☑ Acepto' / 'Finalizar'.
+
+            NOTA:   ⦿   Si la instalación no sale como se espera porque hay una versión de Android Studio instalada, revise el siguiente enlace para
+                         desinstalarla totalmente y repita los pasos 01 y 02:
+
+                            https://blog.buhoos.com/como-desinstalar-completamente-android-studio-de-windows-10/
+
+                    ⦿   En caso que los archivos y/o carpetas no se dejen eliminar, descargue el siguiente programa y siga las instrucciones para
+                         eliminar las carpetas o archivos. Repita los pasos 01 y 02:
+
+                            https://www.iobit.com/es/recommend/imffree.php?name=iobit_unlocker
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.02.  Configurar las 'Variables de entorno del sistema': ------------------------------------------------------------------------------------------|5
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Buscar en el menú Windows 'Editar las variables de entorno del sistema' para enrutar al SDK de Java y Android SDK
+
+            02. Dar clic en 'Variables de entorno…'
+
+            03. En las 'Variables del sistema' dar clic en 'Nueva...'
+
+                    ⦿   Nombre de la variable:  JAVA_HOME
+                    ⦿   Valor de la variable:   'Examinar Directorio': C:\Program Files\Android\Android Studio\jbr\bin
+
+                    ⦿   Nombre de la variable:  ANDROID_HOME
+                    ⦿   Valor de la variable:   'Examinar Directorio': C:\Users\{usuario_del_sistema}\AppData\Local\Android\Sdk
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.03.  Crear el Emulador en Android Studio: --------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abrir Android Studio
+
+            02. Seleccionar 'More Actions / Virtual Device Manager'
+
+            03. Seleccionar la opción '(+) Create Virtual Device' y buscar un emulador que tenga los servicios de Google Service para probar las
+                aplicaciones sin restricciones
+
+            04. Seleccionar, por ejemplo, 'Pixel 4' con el icono de Play Store
+
+            05. Dar clic a 'Next' / descargar una versión, por ejemplo, 'Tiramisu'. Dar clic en el botón de descarga para obtener la API
+
+            06. Dejar las opciones por defecto y dar clic a 'Finish' / 'Next' / 'Finish'.
+
+            07. Ejecutar el Emulador dando clic en la punta de flecha (columna 'Actions', la primera vez demorará más tiempo)
+
+            08. Se ha instalado el emulador
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.04.  Instalar Expo CLI: --------------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            Expo CLI es una interfaz de línea de comandos que permite montar un servidor para correr el proyecto localmente, construir proyectos
+            sencillos y publicarlos. Para más información:
+
+                    ⦿   https://docs.expo.dev/more/expo-cli/
+                    ⦿   https://gist.github.com/mrcodedev/37b463ae63c0c1d762e6efaf4c26af4f
+                    ⦿   https://blog.expo.dev/the-new-expo-cli-f4250d8e3421
+
+            01. En la terminal de 'Visual Studio Code', instalar Expo CLI:
+
+                    ⦿   PS C:\..\react_native> npm install -g expo-cli exp
+                                            ó
+                    ⦿   PS C:\..\react_native> npm install -g react-native-cli
+
+            02. Verificar la versión de expo CLI en la terminal de 'Visual Studio Code':
+
+                    ⦿   PS C:\..\react_native> expo  --version
+
+            NOTA:   ⦿   Si ya tiene un proyecto, reemplace en el archivo “package.json”:
+
+                            ⦿   "scripts":{ "start": "expo start"}, por "scripts":{ "start": "npx expo start"}
+                            ⦿   "scripts":{ "start": "expo start"}, por "scripts":{ "start": "npx expo start"}
+
+                    ⦿   En caso de existir problema, puede desinstalar expo CLI en la terminal de 'Visual Studio Code':
+
+                            ⦿   PS C:\..\react_native> npm uninstall -g expo-cli
+
+                    ⦿   Con el objeto de verificar posibles conflictos de puertos, que se puedan presentar más adelante en el desarrollo de la App,
+                         puede listar los puertos utilizados en Windows desde la consola, con el comando 'netstat -ano'.
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.05.  Crear la aplicación en REACT NATIVE: --------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Obtener los comandos TypeScript a ejecutar: https://reactnative.dev/docs/typescript.
+
+            02. En la terminal de 'Visual Studio Code', crear el proyecto:
+
+                    ⦿   PS PS C:\..\> npx create-expo-app --template
+
+                         Need to install the following packages:
+                         create-expo-app@3.2.0
+                         Ok to proceed? (y) y
+
+                         √ Choose a template: » Blank (TypeScript)
+                         √ What is your app named? ... frontend
+                         √ Downloaded and extracted project files.
+                         > npm install
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.06.  Ejecutar 'frontend' en el emulador de Android: ----------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Abrir una Terminal en 'Visual Studio Code'.
+
+            02. Cambiar el nombre de la terminal a 'frontend', seleccionándola en la parte inferior derecha y presionando F2 / Rename...
+            
+            03. Cambiar el color de la terminal 'frontend', dando click derecho / Chage Color... / Seleccionar el color
+            
+            04. En la Terminal de 'Visual Studio Code' digitar lo siguiente:
+
+                    ⦿   PS C:\..\..> cd frontend
+                    ⦿   PS C:\..\frontend> npm run android
+
+            NOTA:   ⦿   Tener en cuenta los siguientes comandos de 'Expo Go'. En la Terminal de 'Visual Studio Code' puede ejecutar:
+
+                              › Using Expo Go
+                              › Press s │ switch to development build
+
+                              › Press a │ open Android
+                              › Press w │ open web
+
+                              › Press j │ open debugger
+                              › Press r │ reload app
+                              › Press m │ toggle menu
+                              › shift+m │ more tools
+                              › Press o │ open project code in your editor
+
+                              › Press ? │ show all commands
+
+                              Logs for your project will appear below. Press Ctrl+C to exit.
+
+                              › Using Expo Go
+                              › Press s │ switch to development build
+
+                              › Press a │ open Android
+                              › shift+a │ select an Android device or emulator
+                              › Press w │ open web
+
+                              › Press r │ reload app
+                              › Press j │ open debugger
+                              › Press m │ toggle menu
+                              › shift+m │ more tools
+                              › Press o │ open project code in your editor
+                              › Press c │ show project QR
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.07.  Ejecutar 'frontend' en un dispositivo físico Android: ---------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. En el dispositivo, ir a tienda, para Android es Play Store, buscar 'Expo go' e instalarla.
+
+            02. En la terminal de 'Visual Studio Code', ejecutar:
+
+                    ⦿   PS C:\..\frontend> expo start
+
+            03. Si le solicita dependencias adicionales, pulsar 'Y' para instalarlas. Se generará un código QR.
+
+            04. Abrir la aplicación 'Expo Go' en el dispositivo.
+
+            05. Escanear el 'código QR' con el dispositivo. Los dos equipos deben estar en la misma red WiFi.
+            
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.08.  Crear la siguiente estructura de carpetas: --------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+                                                                                                                                        # C = Carpetas
+                                                                                                                                        # A = Archivos
+
+                proyecto_nombre/                                            # C. Backend y Frontend de un proyecto móvil.
+                ├── backend/                                                # C. Lógica del servidor Node.js para la gestión de datos y API.
+                └── frontend/                                               # C. Aplicación móvil de React Native.
+    (NO CREAR)      ├── assets/                                             # C. Recursos estáticos (imágenes, fuentes).
+    (NO CREAR)      ├── node_modules/                                       # C. Dependencias (librerías) instaladas para el frontend.
+                    ├── src/                                                # C. Carpetas y archivos de la aplicación React Native.
+                    │   ├── Data/                                           # C. Capa para obtención y manipulación de datos.
+                    │   │   ├── repositories/                               # C. Interfaces para acceder a diferentes fuentes de datos.
+                    │   │   │   ├── AuthRepository.tsx                      # A. Lógica para la autenticación.
+                    │   │   │   └── UserLocalRepository.tsx                 # A. Gestión de datos del usuario a nivel local (AsyncStorage).
+                    │   │   └── sources/                                    # C. Implementaciones concretas de las fuentes de datos (local, remota).
+                    │   │       ├── local/                                  # C. Lógica para acceder a datos almacenados localmente.
+                    │   │       │   └── LocalStorage.tsx                    # A. Interactua con el almacenamiento local (AsyncStorage).
+                    │   │       └── remote/                                 # C. Interactua con la API del backend (clientes API).
+                    │   │           ├── api/                                # C. Clientes o servicios para realizar llamadas a la API.
+                    │   │           │   └── ApiDelivery.tsx                 # A. Cliente para interactuar con la API relacionada con "delivery".
+                    │   │           └── models/                             # C. Estructuras de datos que se reciben de la API.
+                    │   │               └── ResponseApiDelivery.tsx         # A. Tipo de la respuesta de la API de "delivery".
+                    │   ├── Domain/                                         # C. Lógica de negocio y entidades del dominio (independiente).
+                    │   │   ├── entities/                                   # C. Estructuras de los objetos del negocio (User).
+                    │   │   │   └── User.tsx                                # A. Entidad de usuario con sus propiedades (nombre, email).
+                    │   │   ├── repositories/                               # C. Interfaces para acceder a los datos (implementado en Data).
+                    │   │   │   ├── AuthRepository.tsx                      # A. Interfaz para las operaciones de autenticación.
+                    │   │   │   └── UserLocalRepository.tsx                 # A. Interfaz para la gestión de datos locales del usuario.
+                    │   │   └── useCases/                                   # C. Lógica de negocio específica de la aplicación (dominio/data).
+                    │   │       ├── auth/                                   # C. Casos de uso relacionados con la autenticación (Login, Register).
+                    │   │       │   ├── LoginAuth.tsx                       # A. Lógica para el proceso de inicio de sesión del usuario.
+                    │   │       │   └── RegisterAuth.tsx                    # A. Lógica para el proceso de registro de nuevos usuarios.
+                    │   │       └── userLocal/                              # C. Casos de uso relacionados con la gestión local del usuario.
+                    │   │           ├── GetUserLocal.tsx                    # A. Obtener información del usuario almacenado localmente.
+                    │   │           ├── RemoveUserLocal.tsx                 # A. Eliminar información del usuario almacenado localmente.
+                    │   │           └── SaveUserLocal.tsx                   # A. Guardar la información del usuario localmente.
+                    │   └── Presentation/                                   # C. Capa de la interfaz y presentación de datos (components, views).
+                    │       ├── components/                                 # C. Componentes de interfaz de usuario (inputs, buttons).
+                    │       │   ├── CustomTextInput.tsx                     # A. Componente de entrada de texto personalizado con estilos.
+                    │       │   └── RoundedButton.tsx                       # A. Componente de botón con estilos de bordes redondeados.
+                    │       ├── hooks/                                      # C. Hooks personalizados para lógica de presentación reutilizable.
+                    │       │   └── useUserLocal.tsx                        # A. Hook personalizado para manipular la información local del usuario.
+                    │       ├── theme/                                      # C. Estilos y la temática visual general de la aplicación.
+                    │       │   └── AppTheme.tsx                            # A. Paleta de colores, tipografía y estilos consistentes.
+                    │       └── views/                                      # C. Pantallas o vistas principales de la aplicación.
+                    │           ├── home/                                   # C. Archivos relacionados con la pantalla principal de la aplicación.
+                    │           │   ├── Home.tsx                            # A. Componente principal de la pantalla inicio (Home).
+                    │           │   ├── Styles.tsx                          # A. Estilos específicos para los componentes de la pantalla inicio.
+                    │           │   └── ViewModel.tsx                       # A. Lógica de presentación para la pantalla inicio.
+                    │           ├── profile/                                # C. Archivos relacionados con la pantalla de perfil del usuario.
+                    │           │   └── info/                               # C. Archivos relacionados con la información del perfil del usuario.
+                    │           │       ├── ProfileInfo.tsx                 # A. Componente para mostrar la información del perfil del usuario.
+                    │           │       └── ViewModel.tsx                   # A. Lógica de presentación para la información del perfil del usuario.
+                    │           └── register/                               # C. Archivos relacionados con la pantalla de registro de usuarios.
+                    │               ├── Register.tsx                        # A. Componente principal de la pantalla de registro de usuarios.
+                    │               ├── Styles.tsx                          # A. Estilos específicos para los componentes de la pantalla de registro.
+                    │               └── ViewModel.tsx                       # A. Lógica de presentación para la pantalla de registro de usuarios.
+    (NO CREAR)      ├── .gitignore                                          # A. Archivos y carpetas que Git debe ignorar (node_modules, etc.).
+    (NO CREAR)      ├── app.json                                            # A. Configuración utilizada por Expo para configurar la app.
+    (NO CREAR)      ├── App.tsx                                             # A. Raíz de la aplicación React Native (punto de entrada UI).
+    (NO CREAR)      ├── index.ts                                            # A. Punto de entrada para la aplicación React Native (fuera de Expo).
+    (NO CREAR)      ├── package-lock.json                                   # A. Registra las versiones exactas de las dependencias del frontend.
+    (NO CREAR)      ├── package.json                                        # A. Manifiesto del proyecto frontend (nombre, dependencias, scripts).
+                    └── tsconfig.json                                       # A. Configuración para el compilador de TypeScript.
+
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 05.09.  'frontend/App.tsx' y ¡Hola Mundo!: ------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            El módulo principal, que se ejecuta al lanzar la aplicación es 'App.tsx', donde se encuentran las 'View' que son las diferentes
+            pantallas donde se realiza la navegación. Dentro de los 'View' hay componentes. Los 'View' se relacionan con 'styles', que son los
+            estilos aplicados a cada vista.
+
+            01. Modificar el código del archivo 'App.tsx', para agregar el texto '¡Hola Mundo!':
+
+                    01   import { StatusBar } from 'expo-status-bar';
+                    02   import { StyleSheet, Text, View } from 'react-native';
+                    03
+                    04   export default function App() {
+                    05     return (
+                    06       <View style={styles.container}>
+                    07         <Text>¡Hola Mundo!</Text>
+                    08         <StatusBar style="auto" />
+                    09       </View>
+                    10     );
+                    11   }
+                    12
+                    13   const styles = StyleSheet.create({
+                    14     container: {
+                    15       flex: 1,
+                    16       backgroundColor: '#fff',
+                    17       alignItems: 'center',
+                    18       justifyContent: 'center',
+                    19     },
+                    20   });
+
+
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||------------------------------------------------------------ 06. DESPLEGAR EL PROYECTO -------------------------------------------------------------|||
+|||----------------------------------------------------------------------------------------------------------------------------------------------------|||
+|||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 06.01. Cuando YA está preparado el Entorno de Desarrollo (De lo contrario vaya al punto '01' de este mismo tutorial ): ------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+            01. Crear la Base de datos:
+
+                https://github.com/ProfeAlbeiro/comp_movil/blob/main/sources/db/db_node_react.sql                           
+
+            03. Tomar en cuenta la 'ipconfig' del 'backend/server.js' en la línea 29
+
+            04. Abrir una terminal en 'Visual Studio Code' y ejecutar los siguientes comandos:
+
+                    ⦿   PS C:\..> cd backend
+                    ⦿   PS C:\..\backend> npm install
+                    ⦿   PS C:\..\backend> node server.js
