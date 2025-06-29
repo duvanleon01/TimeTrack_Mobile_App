@@ -33,8 +33,9 @@ module.exports = {
                     lastname: myUser.lastname,
                     image: myUser.image,
                     phone: myUser.phone,
+                    rol: myUser.rol, 
                     session_token: `JWT ${token}`
-                }
+                };
                 return res.status(201).json({
                     success: true,
                     message: 'Usuario autenticado ',
@@ -81,7 +82,7 @@ module.exports = {
                     error: err
                 });
             } else {
-                return res.status(200).json({ // 200 OK para peticiones GET exitosas
+                return res.status(200).json({
                     success: true,
                     message: 'Lista de usuarios obtenida exitosamente',
                     data: users
@@ -107,18 +108,18 @@ module.exports = {
                 });
             }
             else {
-                return res.status(200).json({ // 200 OK para actualización exitosa
+                return res.status(200).json({
                     success: true,
                     message: 'Usuario actualizado exitosamente',
-                    data: { id: userId } // Devolver el ID del usuario actualizado
+                    data: { id: userId }
                 });
             }
         });
     },
 
     delete(req, res) {
-        const id = req.params.id; // El ID viene como parámetro de la URL
-        User.delete(id, (err, userId) => { // userId será el ID si se elimina o null si no se encuentra
+        const id = req.params.id;
+        User.delete(id, (err, userId) => {
             if (err) {
                 console.error('Error al eliminar el usuario:', err);
                 return res.status(501).json({
@@ -136,7 +137,7 @@ module.exports = {
                 return res.status(200).json({
                     success: true,
                     message: 'Usuario eliminado exitosamente',
-                    data: { id: userId } // Devolver el ID del usuario eliminado
+                    data: { id: userId }
                 });
             }
         });

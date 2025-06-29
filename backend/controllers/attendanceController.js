@@ -27,7 +27,6 @@ module.exports = {
             const lastRecord = await AttendanceRecord.findLastClockInByUserId(userId);
 
             if (lastRecord && lastRecord.event_type === 'CLOCK_IN') {
-                // VERIFICAR si este CLOCK_IN activo ha excedido las 24 horas para hacer un auto-ClockOut.
                 const clockInTime = moment(lastRecord.timestamp);
                 const currentTime = moment();
                 const durationSinceLastIn = currentTime.diff(clockInTime, 'minutes');
@@ -46,7 +45,6 @@ module.exports = {
                     await AttendanceRecord.updateDuration(lastRecord.id, autoDurationMinutes);
 
                     // Después del auto-ClockOut exitoso, podemos proceder con el nuevo Clock In
-                    // Opcional: Podrías enviar un mensaje diferente indicando el auto-ClockOut previo.
                 } else {
                     // Si hay un CLOCK_IN activo y NO ha excedido las 24h, NO SE PERMITE otro CLOCK_IN.
                     console.log(`Intento de Clock In para user_id ${userId} cuando ya hay uno activo.`);
@@ -235,7 +233,7 @@ module.exports = {
                 });
             }
 
-            // 1. Obtener el registro que se va a actualizar (su tipo y timestamp actual)
+            // 1. Obtener el registro que se va a actualizar
             const currentRecordToUpdate = await AttendanceRecord.findById(recordId);
             if (!currentRecordToUpdate || currentRecordToUpdate.user_id != user_id) {
                 return res.status(404).json({
@@ -257,9 +255,9 @@ module.exports = {
             // 3. Encontrar el par CLOCK_IN / CLOCK_OUT para la jornada afectada
             const { clockIn, clockOut } = await AttendanceRecord.findPairForUpdate(recordId, user_id);
 
-            console.log('--- Depuración Recalculo ---'); // Nuevo log
-            console.log('ClockIn record:', clockIn);     // Nuevo log
-            console.log('ClockOut record:', clockOut);   // Nuevo log
+            console.log('--- Depuración Recalculo ---'); 
+            console.log('ClockIn record:', clockIn);     
+            console.log('ClockOut record:', clockOut);   
 
             let recalculatedDurationMinutes = null;
             let clockInToUpdateId = null;
@@ -269,15 +267,14 @@ module.exports = {
                 const recalculatedClockInTime = moment(clockIn.timestamp);
                 const recalculatedClockOutTime = moment(clockOut.timestamp);
 
-                console.log('Recalculated Clock In Time:', recalculatedClockInTime.format());  // Nuevo log
-                console.log('Recalculated Clock Out Time:', recalculatedClockOutTime.format()); // Nuevo log
-                console.log('isSameOrBefore result:', recalculatedClockOutTime.isSameOrBefore(recalculatedClockInTime)); // Nuevo log
+                console.log('Recalculated Clock In Time:', recalculatedClockInTime.format());
+                console.log('Recalculated Clock Out Time:', recalculatedClockOutTime.format());
+                console.log('isSameOrBefore result:', recalculatedClockOutTime.isSameOrBefore(recalculatedClockInTime)); 
 
                 // VALIDACIÓN CRÍTICA: CLOCK_OUT debe ser ESTRICTAMENTE POSTERIOR a CLOCK_IN
                 if (recalculatedClockOutTime.isSameOrBefore(recalculatedClockInTime)) {
                     console.error(`Error de lógica de tiempo: Clock Out (${recalculatedClockOutTime.format()}) no puede ser igual o anterior a Clock In (${recalculatedClockInTime.format()}) para user_id: ${user_id}. RECHAZANDO ACTUALIZACIÓN.`); // Mensaje de error más fuerte
                     
-                    // Es CRUCIAL que se detenga aquí
                     return res.status(400).json({
                         success: false,
                         message: 'Error de secuencia de tiempo: La hora de Clock Out debe ser posterior a la hora de Clock In y esta última debe ser previa a la hora del Clock Out. Actualización rechazada.'
@@ -288,18 +285,17 @@ module.exports = {
                 clockInToUpdateId = clockIn.id;
 
             } else if (clockIn && !clockOut) {
-                console.log('Solo Clock In encontrado, sin Clock Out asociado. user_id:', user_id); // Nuevo log
+                console.log('Solo Clock In encontrado, sin Clock Out asociado. user_id:', user_id);
                 recalculatedDurationMinutes = null;
                 clockInToUpdateId = clockIn.id;
 
             } else if (clockOut && !clockIn) {
-                console.log('Solo Clock Out encontrado, sin Clock In asociado. user_id:', user_id); // Nuevo log
+                console.log('Solo Clock Out encontrado, sin Clock In asociado. user_id:', user_id);
                 // Si solo hay un CLOCK_OUT (y fue el que se actualizó) y no tiene CLOCK_IN vinculado.
                 console.log(`ClockOut actualizado (ID: ${recordId}) no tiene un ClockIn vinculado. No se recalcula duración.`);
             } else {
-                console.log('No se encontró un par ClockIn/ClockOut para el registro actualizado. user_id:', user_id); // Nuevo log
+                console.log('No se encontró un par ClockIn/ClockOut para el registro actualizado. user_id:', user_id); 
             }
-            // --- FIN Lógica de VALIDACIÓN ESTRICTA Y RECALCULO ---
 
             // 4. Actualizar la duración del CLOCK_IN correspondiente (si aplica)
             if (clockInToUpdateId !== null) {
@@ -333,7 +329,7 @@ module.exports = {
          console.log('DELETE RECORD: req.body recibido:', req.body);
          const { recordId, user_id } = req.body; 
 
-        if (!recordId || !user_id) { // Ahora esta validación debería funcionar correctamente
+        if (!recordId || !user_id) {
             return res.status(400).json({
                 success: false,
                 message: 'ID del registro y ID de usuario son requeridos para eliminar.'
